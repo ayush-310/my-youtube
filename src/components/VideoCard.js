@@ -1,7 +1,6 @@
 import React from 'react';
 
 const VideoCard = ({ info }) => {
-    console.log(info);
     const { snippet, statistics } = info;
     const { title, channelTitle, publishedAt, thumbnails } = snippet;
     const { viewCount } = statistics;
@@ -42,6 +41,15 @@ const VideoCard = ({ info }) => {
             </div>
         </div>
     );
+};
+
+export const AdvideoCard = ({info}) => {
+    return (
+        <div className='p-1 m-1 border border-red-600'>
+            <VideoCard info={info} />
+        </div>
+    )
+
 };
 
 export default VideoCard;

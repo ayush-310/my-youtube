@@ -1,16 +1,41 @@
 import React from 'react'
 import ButtonComponent from './ButtonComponent'
 
-const list = ["all", "sports", "news", "movies", "documentaries", "Gaming", "Music"]
+const list = [
+    "All",
+    "Sports",
+    "News",
+    "Movies",
+    "Documentaries",
+    "Gaming",
+    "Music",
+    "Comedy",
+    "Travel",
+    "Technology",
+    "Food",
+    "Science",
+    "Education",
+    "Podcasts",
+    "Fashion",
+    "Motivation",
+    "Nature",
+    "History",
+    "Business",
+    "Anime",
+    "Vlogs",
+    "Live"
+];
 
 const ButtonList = () => {
     return (
-        <div className='flex'>
-            {list.map(item => (
-                <ButtonComponent key={item} name={item} />
-            ))}
+        <div className=" overflow-auto  px-3  scrollbar-hide">
+            <div className="flex">
+                {list.map((item) => (
+                    <ButtonComponent key={item} name={item} />
+                ))}
+            </div>
         </div>
-    )
-}
+    );
+};
 
-export default ButtonList
+export default ButtonList;
