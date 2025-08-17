@@ -18,8 +18,8 @@ const VideoContainer = () => {
     }
 
     return (
-        <div className='ps-2 flex justify-center flex-wrap'>
-            {videos[0] && <AdvideoCard info={videos[0]} />}
+        <div className='ps-2 flex bg-amber-600 flex-wrap'>
+            {/* {videos[0] && <AdvideoCard info={videos[0]} />} */}
             {videos?.map((video) => (
                 <Link key={video.id} to={"/watch?v=" + video.id}>
                     <VideoCard key={video.id} info={video} />

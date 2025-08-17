@@ -1,53 +1,60 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { MdHome, MdOutlineSubscriptions, MdMusicNote, MdSportsEsports, MdOutlineLiveTv, MdTrendingUp, MdShortText } from 'react-icons/md';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+    MdHome,
+    MdOutlineSubscriptions,
+    MdMusicNote,
+    MdSportsEsports,
+    MdOutlineLiveTv,
+    MdTrendingUp,
+    MdShortText,
+    MdPersonOutline,
+    MdDownload,
+} from "react-icons/md";
+import { motion } from "framer-motion";
 
 const Sidebar = () => {
-    const isMenuOpen = useSelector(store => store.app.isMenuOpen);
+    const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
-    if (!isMenuOpen) return null;
+    const menuItems = [
+        { to: "/", label: "Home", icon: <MdHome size={24} /> },
+        { to: "/shorts", label: "Shorts", icon: <MdShortText size={24} /> },
+        { to: "/live", label: "Live", icon: <MdOutlineLiveTv size={24} /> },
+        { to: "/subscriptions", label: "Subscriptions", icon: <MdOutlineSubscriptions size={24} /> },
+        { to: "/music", label: "Music", icon: <MdMusicNote size={24} /> },
+        { to: "/trending", label: "Trending", icon: <MdTrendingUp size={24} /> },
+        { to: "/sports", label: "Sports", icon: <MdSportsEsports size={24} /> },
+        { to: "/you", label: "You", icon: <MdPersonOutline size={24} /> },
+        { to: "/downloads", label: "Downloads", icon: <MdDownload size={24} /> },
+    ];
 
     return (
-        <div className="p-5 pt-0  w-60  min-h-screen">
-            {/* Main Navigation */}
-            <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-lg hover:bg-gray-100 dark:hover:bg-gray-300 p-2 rounded-lg transition">
-                    <MdHome size={22} />
-                    <Link to="/">Home</Link>
-                </li>
-                <li className="flex items-center gap-3 text-lg hover:bg-gray-100 dark:hover:bg-gray-300 p-2 rounded-lg transition">
-                    <MdShortText size={22} />
-                    <Link to="/shorts">Shorts</Link>
-                </li>
-                <li className="flex items-center gap-3 text-lg hover:bg-gray-100 dark:hover:bg-gray-300 p-2 rounded-lg transition">
-                    <MdOutlineLiveTv size={22} />
-                    <Link to="/live">Live</Link>
-                </li>
+        <motion.div
+            initial={{ width: 80 }}
+            animate={{ width: isMenuOpen ? 190 : 80 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="min-h-screen mx-2 bg-white dark:border-gray-700 shadow-sm py-4"
+        >
+            <ul className="flex flex-col gap-2">
+                {menuItems.map((item) => (
+                    <Link key={item.to} to={item.to}>
+                        <li
+                            className={`flex ${isMenuOpen ? "flex-row gap-3 justify-start px-4" : "flex-col"
+                                } items-center cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-300 p-2 rounded-lg transition`}
+                        >
+                            {item.icon}
+                            <span
+                                className={`${isMenuOpen ? "text-base" : "text-xs mt-1"
+                                    } whitespace-nowrap`}
+                            >
+                                {item.label}
+                            </span>
+                        </li>
+                    </Link>
+                ))}
             </ul>
-
-            {/* Divider */}
-            <hr className="my-5 border-gray-300 dark:border-gray-600" />
-
-            {/* Subscriptions */}
-            <h2 className="font-bold mb-3 flex items-center gap-2 text-gray-900 ">
-                <MdOutlineSubscriptions size={20} /> Subscriptions
-            </h2>
-            <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-lg hover:bg-gray-100 dark:hover:bg-gray-300 p-2 rounded-lg transition">
-                    <MdMusicNote size={22} />
-                    <Link to="/music">Music</Link>
-                </li>
-                <li className="flex items-center gap-3 text-lg hover:bg-gray-100 dark:hover:bg-gray-300 p-2 rounded-lg transition">
-                    <MdTrendingUp size={22} />
-                    <Link to="/trending">Trending</Link>
-                </li>
-                <li className="flex items-center gap-3 text-lg hover:bg-gray-100 dark:hover:bg-gray-300 p-2 rounded-lg transition">
-                    <MdSportsEsports size={22} />
-                    <Link to="/sports">Sports</Link>
-                </li>
-            </ul>
-        </div>
+        </motion.div>
     );
 };
 
