@@ -52,18 +52,18 @@ const Head = () => {
     };
 
     return (
-        <div className="grid grid-flow-col p-3 shadow-md sticky top-0 bg-white z-50 items-center">
+        <div className="grid grid-flow-col p-3 shadow-md sticky top-0 justify-between bg-white z-50 items-center">
 
             {/* Left - Menu & Logo */}
-            <div className="flex items-center col-span-1">
+            <div className="flex items-center col-span-1 ms-3 ">
                 <img
                     onClick={toggleMenuHandler}
-                    className="h-8 cursor-pointer hover:scale-110 transition-transform"
+                    className="h-6 cursor-pointer ps-1 hover:scale-110 transition-transform"
                     src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg"
                     alt="menu"
                 />
                 <img
-                    className="h-8 ml-4 cursor-pointer"
+                    className="h-7 ml-4 cursor-pointer"
                     src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
                     alt="youtube-logo"
                 />

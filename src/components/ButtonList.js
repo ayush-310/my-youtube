@@ -44,7 +44,7 @@ const ButtonList = () => {
             {/* Scrollable container */}
             <div
                 ref={scrollContainerRef}
-                className="flex overflow-x-auto scrollbar-hide space-x-3 px-3 py-2 scroll-smooth"
+                className="flex overflow-x-auto scrollbar-hide space-x-3 px-3 ps-1 py-2 scroll-smooth"
                 onScroll={updateArrows}
             >
                 {list.map((item, index) => (

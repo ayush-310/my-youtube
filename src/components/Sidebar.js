@@ -42,6 +42,7 @@ const Sidebar = () => {
                         <li
                             className={`flex ${isMenuOpen ? "flex-row gap-3 justify-start px-4" : "flex-col"
                                 } items-center cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-300 p-2 rounded-lg transition`}
+                                style={{ paddingStart: isMenuOpen ? "0px" : "8px" }}
                         >
                             {item.icon}
                             <span
