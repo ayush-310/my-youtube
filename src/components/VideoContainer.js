@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { YOUTUBE_VIDEOS_API } from './../utils/constants';
-import VideoCard, { AdvideoCard } from './VideoCard';
-import { Link } from 'react-router-dom';
+import React from "react";
+import VideoCard from "./VideoCard";
+import { Link } from "react-router-dom";
+import useVideos from "../hooks/useVideos";
 
 const VideoContainer = () => {
-    const [videos, setVideos] = useState([]);
+    const { videos, loading, error } = useVideos();
 
-    useEffect(() => {
-        getVideos();
-    }, []);
+    if (loading) {
+        return <p className="p-4 text-center text-gray-600">Loading videos...</p>;
+    }
 
-    const getVideos = async () => {
-        const data = await fetch(YOUTUBE_VIDEOS_API);
-        const videos = await data.json();
-        setVideos(videos.items);
-    };
+    if (error) {
+        return <p className="p-4 text-red-500">Failed to load videos.</p>;
+    }
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4 ps-3 pt-1">
-            {videos?.map((video) => (
-                <Link key={video.id} to={"/watch?v=" + video.id}>
-                    <VideoCard key={video.id} info={video} />
+            {videos.map((video) => (
+                <Link key={video.id} to={`/watch?v=${video.id}`}>
+                    <VideoCard info={video} />
                 </Link>
             ))}
         </div>

@@ -1,17 +1,9 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { closeMenu } from '../utils/appSlice';
-import { useSearchParams } from 'react-router-dom';
+import useWatchPage from '../hooks/useWatchPage';
 
 const WatchPage = () => {
-    const [searchParam] = useSearchParams();
-    const dispatch = useDispatch();
 
+    const { searchParam } = useWatchPage();
 
-
-    useEffect(() => {
-        dispatch(closeMenu());
-    }, [])
     return (
         <div className='px-5'>
             <iframe
@@ -19,11 +11,11 @@ const WatchPage = () => {
                 height="500"
                 src={`https://www.youtube.com/embed/${searchParam.get("v")}`}
                 title="YouTube video player"
-                frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowFullScreen>
-            </iframe>
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+            ></iframe>
+
         </div>
     )
 }

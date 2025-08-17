@@ -1,6 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import ButtonComponent from './ButtonComponent';
+import ButtonComponent from "./ButtonComponent";
+import useHorizontalScroll from "../hooks/useHorizontalScroll";
 
 const list = [
     "All", "Sports", "News", "Movies", "Documentaries", "Gaming", "Music",
@@ -10,37 +11,16 @@ const list = [
 ];
 
 const ButtonList = () => {
-    const scrollContainerRef = useRef(null);
-    const [showLeftArrow, setShowLeftArrow] = useState(false);
-    const [showRightArrow, setShowRightArrow] = useState(false);
-
-    const updateArrows = () => {
-        const container = scrollContainerRef.current;
-        if (container) {
-            setShowLeftArrow(container.scrollLeft > 0);
-            setShowRightArrow(container.scrollLeft < container.scrollWidth - container.clientWidth - 5);
-        }
-    };
-
-    useEffect(() => {
-        updateArrows();
-        window.addEventListener("resize", updateArrows);
-        return () => window.removeEventListener("resize", updateArrows);
-    }, []);
-
-    const scroll = (direction) => {
-        const container = scrollContainerRef.current;
-        if (container) {
-            const scrollAmount = container.clientWidth * 0.8; // scroll 80% width
-            container.scrollBy({
-                left: direction === "left" ? -scrollAmount : scrollAmount,
-                behavior: "smooth"
-            });
-        }
-    };
+    const {
+        scrollContainerRef,
+        showLeftArrow,
+        showRightArrow,
+        updateArrows,
+        scroll,
+    } = useHorizontalScroll();
 
     return (
-        <div className="relative  overflow-hidden">
+        <div className="relative my-2 overflow-hidden">
             {/* Scrollable container */}
             <div
                 ref={scrollContainerRef}
@@ -57,7 +37,7 @@ const ButtonList = () => {
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none">
                     <button
                         onClick={() => scroll("left")}
-                        className="pointer-events-auto bg-white text-white bg-opacity-70 p-2 rounded-full shadow-md hover:bg-opacity-90 transition"
+                        className="pointer-events-auto bg-white bg-opacity-70 p-2 rounded-full shadow-md hover:bg-opacity-90 transition"
                     >
                         <FaChevronLeft className="text-gray-700" />
                     </button>
