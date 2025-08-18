@@ -1,5 +1,6 @@
 import React from "react";
 import useChannelData from "../hooks/useChannelData";
+import { useSelector } from "react-redux";
 
 const VideoCard = React.memo(({ info }) => {
     const { snippet, statistics, contentDetails } = info;
@@ -10,8 +11,12 @@ const VideoCard = React.memo(({ info }) => {
     const { channelThumbnail, formatViews, formatDuration, timeAgo } =
         useChannelData(channelId);
 
+    const darktheme = useSelector((store) => store.app.darktheme);
+
+
     return (
-        <div className="cursor-pointer bg-white text-black rounded-lg overflow-hidden">
+        <div className="cursor-pointer bg-white text-black rounded-lg overflow-hidden"
+            style={{ backgroundColor: darktheme ? "#181818" : "white", color: darktheme ? "white" : "black" }}>
             {/* Thumbnail */}
             <div className="relative">
                 <img
@@ -38,9 +43,9 @@ const VideoCard = React.memo(({ info }) => {
                 )}
 
                 {/* Title & meta */}
-                <div className="ml-3">
+                <div className={`ml-3 gap-1 ${darktheme ? "text-white" : "text-black"}`}>
                     <h3 className="font-semibold leading-tight line-clamp-2">{title}</h3>
-                    <p className="text-gray-500 hover:text-gray-800 text-sm">{channelTitle}</p>
+                    <p className={`text-slate-400 hover:text-white text-sm ${darktheme ? "text-slate-400 hover:text-white" : "text-slate-600 hover:text-black"}`}>{channelTitle}</p>
                     <p className="text-gray-500 text-sm">
                         {formatViews(Number(viewCount))} views • {timeAgo(publishedAt)}
                     </p>

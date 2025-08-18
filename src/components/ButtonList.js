@@ -2,6 +2,7 @@ import React from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ButtonComponent from "./ButtonComponent";
 import useButtonList from "../hooks/useButtonList";
+import { useSelector } from "react-redux";
 
 const list = [
     "All", "Sports", "News", "Movies", "Documentaries", "Gaming", "Music",
@@ -18,6 +19,9 @@ const ButtonList = () => {
         updateArrows,
         scroll,
     } = useButtonList();
+
+    const darktheme = useSelector((store) => store.app.darktheme);
+
 
     return (
         <div className="relative my-2 overflow-hidden">
@@ -37,9 +41,11 @@ const ButtonList = () => {
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none">
                     <button
                         onClick={() => scroll("left")}
-                        className="pointer-events-auto bg-white bg-opacity-70 p-2 rounded-full shadow-md hover:bg-opacity-90 transition"
-                    >
-                        <FaChevronLeft className="text-gray-700" />
+                        className={`pointer-events-auto p-2 rounded-full shadow-md 
+        ${darktheme
+                                ? "bg-black hover:bg-gray-800"
+                                : "bg-white hover:bg-gray-300"}`}>
+                        <FaChevronLeft className={`${darktheme ? "text-white" : "text-gray-700"}`} />
                     </button>
                 </div>
             )}
@@ -49,12 +55,16 @@ const ButtonList = () => {
                 <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
                     <button
                         onClick={() => scroll("right")}
-                        className="pointer-events-auto bg-white bg-opacity-70 p-2 rounded-full shadow-md hover:bg-opacity-90 transition"
+                        className={`pointer-events-auto p-2 rounded-full shadow-md 
+        ${darktheme
+                                ? "bg-black hover:bg-gray-800"
+                                : "bg-white hover:bg-gray-300"}`}
                     >
-                        <FaChevronRight className="text-gray-700" />
+                        <FaChevronRight className={`${darktheme ? "text-white" : "text-gray-700"}`} />
                     </button>
                 </div>
             )}
+
         </div>
     );
 };

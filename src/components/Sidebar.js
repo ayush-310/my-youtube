@@ -16,6 +16,7 @@ import { motion } from "framer-motion";
 
 const Sidebar = () => {
     const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+    const darktheme = useSelector((store) => store.app.darktheme);
 
     const menuItems = [
         { to: "/", label: "Home", icon: <MdHome size={24} /> },
@@ -34,15 +35,15 @@ const Sidebar = () => {
             initial={{ width: 80 }}
             animate={{ width: isMenuOpen ? 190 : 80 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="min-h-screen mx-2 bg-white dark:border-gray-700 shadow-sm py-4"
+            className={`min-h-screen mx-2  dark:border-gray-700 shadow-sm py-4 ${darktheme ? "bg-[#181818] text-white" : "bg-white "}`}
         >
             <ul className="flex flex-col gap-2">
                 {menuItems.map((item) => (
                     <Link key={item.to} to={item.to}>
                         <li
                             className={`flex ${isMenuOpen ? "flex-row gap-3 justify-start px-4" : "flex-col"
-                                } items-center cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-300 p-2 rounded-lg transition`}
-                                style={{ paddingStart: isMenuOpen ? "0px" : "8px" }}
+                                } items-center cursor-pointer p-2 rounded-lg transition ${darktheme ? "hover:bg-gray-700" : "hover:bg-gray-200"}`}
+                            style={{ paddingStart: isMenuOpen ? "0px" : "8px" }}
                         >
                             {item.icon}
                             <span

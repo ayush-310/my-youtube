@@ -2,16 +2,19 @@ import React from "react";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
 import useVideos from "../hooks/useVideos";
+import { useSelector } from "react-redux";
 
 const VideoContainer = () => {
     const { videos, loading, error } = useVideos();
+        const darktheme = useSelector((store) => store.app.darktheme);
+
 
     if (loading) {
-        return <p className="p-4 text-center text-gray-600">Loading videos...</p>;
+        return <p className="p-4 text-center text-gray-600" style={{ color: darktheme ? "white" : "black" }}>Loading videos...</p>;
     }
 
     if (error) {
-        return <p className="p-4 text-red-500">Failed to load videos.</p>;
+        return <p className="p-4 text-red-500" style={{ color: darktheme ? "white" : "black" }}>Failed to load videos.</p>;
     }
 
     return (

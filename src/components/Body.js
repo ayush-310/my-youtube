@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 
 const Body = () => {
     const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+    const darktheme = useSelector((store) => store.app.darktheme);
 
     return (
-        <div className="flex">
+        <div className="flex" style={{ backgroundColor: darktheme ? "#181818" : "white" }}>
             {/* Sidebar */}
             <Sidebar />
 
@@ -18,7 +19,7 @@ const Body = () => {
                 initial={{ width: `calc(100vw - ${isMenuOpen ? 200 : 113}px)` }}
                 animate={{ width: `calc(100vw - ${isMenuOpen ? 200 : 113}px)` }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="min-h-screen bg-white px-3"
+                className={`min-h-screen  px-3 ps-2 ${darktheme ? "text-white bg-[#181818]" : "text-black bg-white"}`}
             >
                 <Outlet />
             </motion.div>
