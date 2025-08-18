@@ -1,6 +1,7 @@
+import React from "react";
 import useChannelData from "../hooks/useChannelData";
 
-const VideoCard = ({ info }) => {
+const VideoCard = React.memo(({ info }) => {
     const { snippet, statistics, contentDetails } = info;
     const { title, channelTitle, publishedAt, thumbnails, channelId } = snippet;
     const { viewCount } = statistics;
@@ -24,7 +25,7 @@ const VideoCard = ({ info }) => {
             </div>
 
             {/* Video info */}
-            <div className="flex mt-2 px-2 pb-2">
+            <div className="flex my-2 ">
                 {/* Channel icon */}
                 {channelThumbnail ? (
                     <img
@@ -47,6 +48,6 @@ const VideoCard = ({ info }) => {
             </div>
         </div>
     );
-};
+});
 
 export default VideoCard;

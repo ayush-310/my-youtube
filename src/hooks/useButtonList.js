@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 
-const useHorizontalScroll = () => {
+const useButtonList = () => {
     const scrollContainerRef = useRef(null);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(false);
@@ -43,4 +43,4 @@ const useHorizontalScroll = () => {
     };
 };
 
-export default useHorizontalScroll;
+export default useButtonList;

@@ -1,7 +1,7 @@
 import React from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ButtonComponent from "./ButtonComponent";
-import useHorizontalScroll from "../hooks/useHorizontalScroll";
+import useButtonList from "../hooks/useButtonList";
 
 const list = [
     "All", "Sports", "News", "Movies", "Documentaries", "Gaming", "Music",
@@ -17,14 +17,14 @@ const ButtonList = () => {
         showRightArrow,
         updateArrows,
         scroll,
-    } = useHorizontalScroll();
+    } = useButtonList();
 
     return (
         <div className="relative my-2 overflow-hidden">
             {/* Scrollable container */}
             <div
                 ref={scrollContainerRef}
-                className="flex overflow-x-auto scrollbar-hide space-x-3 px-3 ps-1 py-2 scroll-smooth"
+                className="flex overflow-x-auto scrollbar-hide space-x-3 px-3 ps-2 py-2 scroll-smooth"
                 onScroll={updateArrows}
             >
                 {list.map((item, index) => (
