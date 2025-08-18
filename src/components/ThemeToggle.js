@@ -16,7 +16,7 @@ const ThemeToggle = () => {
             {/* Circle Knob */}
             <div
                 className={`w-5 h-5 rounded-full shadow-md transform transition-transform duration-300
-          ${darktheme ? "translate-x-6 bg-yellow-400" : "translate-x-0 bg-blue-600"}`}
+                ${darktheme ? "translate-x-6 bg-yellow-400" : "translate-x-0 ps-0 bg-blue-600"}`}
             />
         </button>
     );
