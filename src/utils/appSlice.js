@@ -4,7 +4,7 @@ const appSlice = createSlice({
     name:"app",
     initialState:{
         isMenuOpen : true,
-        darktheme : false,
+        darktheme : true,
     },
     reducers:{
         toggleMenu:(state)=>{

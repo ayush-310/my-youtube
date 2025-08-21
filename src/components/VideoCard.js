@@ -3,7 +3,7 @@ import useChannelData from "../hooks/useChannelData";
 import { useSelector } from "react-redux";
 
 const VideoCard = React.memo(({ info }) => {
-    console.log(info);
+    // console.log(info);
     const { snippet, statistics, contentDetails } = info;
     const { title, channelTitle, publishedAt, thumbnails, channelId } = snippet;
     const { viewCount } = statistics;

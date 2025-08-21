@@ -90,7 +90,7 @@ const Head = () => {
                     {showSuggestions && suggestions.length > 0 && (
                         <div
                             className={`absolute top-12 left-0 w-full p-2 shadow-lg border z-10
-                ${darktheme
+      ${darktheme
                                     ? "bg-[#1f1f1f] border-gray-700 text-white"
                                     : "bg-white border-gray-200 text-black"
                                 } rounded-lg`}
@@ -98,17 +98,18 @@ const Head = () => {
                             <ul>
                                 {suggestions.map((item, index) => (
                                     <li
-                                        key={index}
-                                        className={`px-4 py-2 flex items-center gap-2 rounded-lg cursor-pointer 
-                            ${darktheme ? "hover:bg-[#333]" : "hover:bg-gray-100"}`}
-                                        onMouseDown={() => setSearchQuery(item)}
+                                        key={item.id?.videoId || index}
+                                        className={`px-4 py-2 flex items-center  gap-4 rounded-lg cursor-pointer 
+            ${darktheme ? "hover:bg-[#333]" : "hover:bg-gray-100"}`}
+                                        onMouseDown={() => setSearchQuery(item.snippet?.title || "")}
                                     >
                                         <img
-                                            className="h-4"
+                                            className="h-5"
                                             src={darktheme ? white_magnifyGlass : black_magnifyGlass}
                                             alt="search"
                                         />
-                                        <span>{item}</span>
+                                        <span className="truncate">{item.snippet?.title}</span>
+                                        {/* <span className="ml-2 text-xs text-gray-400">{item.snippet?.channelTitle}</span> */}
                                     </li>
                                 ))}
                             </ul>

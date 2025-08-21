@@ -1,6 +1,6 @@
 // src/hooks/useSearchSuggestions.js
 import { useEffect, useState } from "react";
-import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import { YOUTUBE_SEARCH_API, GOOGLE_API_KEY } from "../utils/constants";
 
 /**
  * Custom hook to handle YouTube search suggestions with debouncing.
@@ -38,9 +38,13 @@ const useSearchSuggestions = () => {
      *  */
     const getSearchSuggestion = async () => {
         try {
-            const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
-            const json = await data.json();
-            setSuggestions(json[1] || []);
+            const res = await fetch(
+                `${YOUTUBE_SEARCH_API}${encodeURIComponent(searchQuery)}&key=${GOOGLE_API_KEY}`
+            );
+            const json = await res.json();
+            // ✅ YouTube Data API returns `items` not `json[1]`
+            console.log(json.items);
+            setSuggestions(json.items || []);
         } catch (error) {
             console.error("Error fetching suggestions:", error);
         }
